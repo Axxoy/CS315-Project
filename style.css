@@ -1,0 +1,83 @@
+   /* Set the width and height of the menu bar */
+   body {
+    margin-top: 5em;
+   }
+   
+   .menu {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Show the menu bar when the checkbox is checked */
+#menu-toggle:checked ~ .menu {
+    left: 0;
+}
+
+/* Hide the checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Style the label */
+.menu-toggle-label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Style the hamburger icon */
+.menu-toggle-label span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: gold;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Rotate the top and bottom lines of the hamburger icon */
+.menu-toggle-label span:nth-child(1) {
+    transform: rotate(0deg);
+    transform-origin: 5px 0;
+}
+
+.menu-toggle-label span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle-label span:nth-child(3) {
+    transform: rotate(0deg);
+    transform-origin: 5px 1px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+}
+
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    color:gold;
+}
+
+a:hover {
+    color: gold;
+}
