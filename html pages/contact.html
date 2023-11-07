@@ -10,54 +10,24 @@
 
 <body>
 
-    <h1>Contact Us!</h1>
+    <h1>Submission JSON</h1>
 
-    <!-- set up the skeleton for the form -->
-
-    <form id="contact-form">
-        <label for="firstName">First Name:</label><br>
-        <input type="text" id="firstName" name="firstName" required><br>
-
-        <label for="lastName">Last Name:</label><br>
-        <input type="text" id="lastName" name="lastName" required><br>
-
-        <label for="phoneNumber">Phone Number:</label><br>
-        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required><br>
-
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
-
-        <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject" required><br>
-
-        <label for="message">Message:</label><br>
-        <textarea name="message" rows="10" cols="30" placeholder="Enter your message here." required></textarea><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <p id="data"></p>
+    <p id="data" style="text-align: center;"></p>
 
     <script>
-        const form = document.getElementById('contact-form');
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            const jsonData = JSON.stringify(data);
-            var paragraphElement = document.getElementById("data");
-            var submissionPageUrl = "submission.html";
-            var paragraphElement2 = document.getElementById(submissionPageUrl.data);
+
+        var paragraphElement = document.getElementById("data");
+
+        // Retrieve the data from localStorage
+        var jsonData = localStorage.getItem("data");
+
+        // Check if the data exists in localStorage
+        if (jsonData) {
             paragraphElement.innerHTML = jsonData;
-            paragraphElement2.innerHTML = jsonData;
-            window.location.href = 'submission.html';
-        });
-    </script>
-
-    <script>
+        } else {
+            // Handle the case where data is not found in localStorage
+            paragraphElement.innerHTML = "No data available.";
+        }
 
     </script>
 
