@@ -10,7 +10,26 @@
 
 <body>
 
-    <p id="data"></p>
+    <h1>Submission JSON</h1>
+
+    <p id="data" style="text-align: center;"></p>
+
+    <script>
+
+        var paragraphElement = document.getElementById("data");
+
+        // Retrieve the data from localStorage
+        var jsonData = localStorage.getItem("data");
+
+        // Check if the data exists in localStorage
+        if (jsonData) {
+            paragraphElement.innerHTML = jsonData;
+        } else {
+            // Handle the case where data is not found in localStorage
+            paragraphElement.innerHTML = "No data available.";
+        }
+
+    </script>
 
 </body>
 
