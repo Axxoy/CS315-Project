@@ -1,52 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <title>Document</title>
 </head>
+
 <body>
 
     <h1>Contact Us!</h1>
 
     <!-- set up the skeleton for the form -->
-    
-    <form>
-        <label for="fname">First Name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last Name:</label><br>
-        <input type="text" id="lname" name="lname"><br>
-        <label for="pnumber">Phone Number:</label><br>
-        <input type="text" id="pnumber" name="pnumber"><br>
+
+    <form id="contact-form">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" required><br>
+
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" required><br>
+
+        <label for="phoneNumber">Phone Number:</label><br>
+        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required><br>
+
         <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" required><br>
+
         <label for="message">Message:</label><br>
-        <textarea name="message" rows="10" cols="30">
-            Enter your message here.
-        </textarea>
+        <textarea name="message" rows="10" cols="30" placeholder="Enter your message here." required></textarea><br>
+
+        <input type="submit" value="Submit">
     </form>
 
-    <button type="button" onclick="myFunction()">Submit</button>
-
-    <p id="demo"></p>
+    <p id="data"></p>
 
     <script>
-    function myFunction() {
-        let x = document.getElementById("pnumber").value;
-        let y = document.getElementById("email").value;
-        let ptext, etext;
-        var validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (isNaN(x) || x.length !== 10) {
-            ptext = "Invalid Input, please enter a 10 digit number with no other characters.";
-        }
-        else {
-            ptext = "Good!"
-        }
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            const jsonData = JSON.stringify(data);
+            var paragraphElement = document.getElementById("data");
+            var submissionPageUrl = "submission.html";
+            var paragraphElement2 = document.getElementById(submissionPageUrl.data);
+            paragraphElement.innerHTML = jsonData;
+            paragraphElement2.innerHTML = jsonData;
+            window.location.href = 'submission.html';
+        });
+    </script>
 
-        document.getElementById("demo").innerHTML = ptext;
-    }
-    </script> 
+    <script>
+
+    </script>
 
 </body>
+
 </html>
