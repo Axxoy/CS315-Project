@@ -48,7 +48,25 @@
             const jsonData = JSON.stringify(data);
             localStorage.setItem("data", jsonData);
             window.location.href = 'submission.html';
+
+            fetch("/your-server-endpoint", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    console.log("Server response:", data);
+                    // You can update the page or perform other actions based on the server response
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
         });
+
     </script>
 
     <script>
