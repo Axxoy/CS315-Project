@@ -1,0 +1,12 @@
+h1 {
+    font-size: 2rem;
+}
+
+.menu {
+    width: 125px;
+    height: 50%;
+}
+
+li {
+    font-size: .6rem;
+}
