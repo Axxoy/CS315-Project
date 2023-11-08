@@ -1,7 +1,7 @@
-.popup-description{
-    display: none;
-  }
-  
-  [type="radio"]:checked ~ label ~ .popup-description{
-    display: block;
-  }
+.popup-description {
+  display: none;
+}
+
+[type="radio"]:checked~label~.popup-description {
+  display: block;
+}
