@@ -88,12 +88,43 @@
             event.preventDefault(); // Prevent the default form submission behavior
 
             // Create a FormData object from the form
-            const formData = new FormData(form);
+            const formData = new FormData(document.getElementById('contact-form'));
             const data = {};
 
             // Convert the form data to a JavaScript object
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
+            }
+
+            // Verify the form data
+            let errorMessage = "";
+            if (data.firstName.trim() === "") {
+                errorMessage += "First name is required.\n";
+            }
+            if (data.lastName.trim() === "") {
+                errorMessage += "Last name is required.\n";
+            }
+            if (data.phoneNumber.trim() === "") {
+                errorMessage += "Phone number is required.\n";
+            } else if (!/^[0-9]{10}$/.test(data.phoneNumber.trim())) {
+                errorMessage += "Invalid phone number.\n";
+            }
+            if (data.email.trim() === "") {
+                errorMessage += "Email is required.\n";
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
+                errorMessage += "Invalid email address.\n";
+            }
+            if (data.subject.trim() === "") {
+                errorMessage += "Subject is required.\n";
+            }
+            if (data.message.trim() === "") {
+                errorMessage += "Message is required.\n";
+            }
+
+            // If there is an error, notify the user and stop the submission
+            if (errorMessage !== "") {
+                alert(errorMessage);
+                return;
             }
 
             // Convert the data object to a JSON string
