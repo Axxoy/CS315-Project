@@ -49,8 +49,7 @@
 
     <h1>Contact Us!</h1>
 
-    <!-- set up the skeleton for the form -->
-
+    <!-- Set up the skeleton for the form -->
     <form id="contact-form">
         <label for="firstName">First Name:</label><br>
         <input type="text" id="firstName" name="firstName" required><br>
@@ -73,28 +72,40 @@
         <input type="submit" value="Submit">
     </form>
 
-
     <footer>
         <p style="text-align: center;"><em>Designed and Created by Cüneyt Aksoy and Paul Keiser
-            <br>
-            MIT License - 2023</em>
+                <br>
+                MIT License - 2023</em>
         </p>
-        </footer>
-        
+    </footer>
 
     <script>
+        // Select the form element by its ID
         const form = document.getElementById('contact-form');
+
+        // Add a submit event listener to the form
         form.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Create a FormData object from the form
             const formData = new FormData(form);
             const data = {};
+
+            // Convert the form data to a JavaScript object
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
+
+            // Convert the data object to a JSON string
             const jsonData = JSON.stringify(data);
+
+            // Store the JSON data in the local storage
             localStorage.setItem("data", jsonData);
+
+            // Redirect to the submission page
             window.location.href = 'submission.html';
 
+            // Send the form data to the server using fetch
             fetch("/your-server-endpoint", {
                 method: "POST",
                 headers: {
@@ -112,10 +123,7 @@
                     console.error("Error:", error);
                 });
         });
-
     </script>
-
-
 </body>
 
 </html>

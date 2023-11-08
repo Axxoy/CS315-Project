@@ -1,271 +1,271 @@
-   /* Set the width and height of the menu bar */
-   body {
-       margin-top: 5em;
-       background: linear-gradient(to right, rgb(255, 207, 215), #f7e9e9);
-   }
+/* Set the width and height of the menu bar */
+body {
+    margin-top: 5em;
+    background: linear-gradient(to right, rgb(255, 207, 215), #f7e9e9);
+}
 
-   .menu {
-       width: 250px;
-       height: 100%;
-       position: fixed;
-       top: 0;
-       left: -250px;
-       background-color: #fffcc1;
-       transition: all 0.3s ease-in-out;
-   }
+/* Define the styles for the menu */
+.menu {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #fffcc1;
+    transition: all 0.3s ease-in-out;
+}
 
-   /* Show the menu bar when the checkbox is checked */
-   #menu-toggle:checked~.menu {
-       left: 0;
-   }
+/* Show the menu bar when the checkbox is checked */
+#menu-toggle:checked~.menu {
+    left: 0;
+}
 
-   /* Hide the checkbox */
-   #menu-toggle {
-       display: none;
-   }
+/* Hide the checkbox */
+#menu-toggle {
+    display: none;
+}
 
-   /* Style the label */
-   .menu-toggle-label {
-       position: fixed;
-       top: 0;
-       left: 0;
-       margin: 20px;
-       cursor: pointer;
-       z-index: 1;
-   }
+/* Style the label for the menu toggle */
+.menu-toggle-label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
 
-   /* Style the hamburger icon */
-   .menu-toggle-label span {
-       display: block;
-       width: 30px;
-       height: 3px;
-       background-color: rgb(255, 138, 158);
-       margin-bottom: 5px;
-       transition: all 0.3s ease-in-out;
-   }
+/* Style the hamburger icon within the label */
+.menu-toggle-label span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: rgb(255, 138, 158);
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
 
-   /* Rotate the top and bottom lines of the hamburger icon */
-   .menu-toggle-label span:nth-child(1) {
-       transform: rotate(0deg);
-       transform-origin: 5px 0;
-   }
+/* Rotate the top and bottom lines of the hamburger icon */
+.menu-toggle-label span:nth-child(1) {
+    transform: rotate(0deg);
+    transform-origin: 5px 0;
+}
 
-   .menu-toggle-label span:nth-child(2) {
-       opacity: 0;
-   }
+.menu-toggle-label span:nth-child(2) {
+    opacity: 0;
+}
 
-   .menu-toggle-label span:nth-child(3) {
-       transform: rotate(0deg);
-       transform-origin: 5px 1px;
-   }
+.menu-toggle-label span:nth-child(3) {
+    transform: rotate(0deg);
+    transform-origin: 5px 1px;
+}
 
-   menu {
-       list-style: none;
-       margin: 0;
-       padding: 0;
-       padding-top: 4em;
-   }
+/* Define the styles for the menu items */
+menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 4em;
+}
 
-   li {
-       display: inline-block;
-       margin: 0 10px;
-       font-size: 1.2em;
-       font-family: sans-serif;
-       text-transform: uppercase;
-       letter-spacing: 1px;
-       padding: 1em;
-   }
+li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1em;
+}
 
-   a {
-       text-decoration: none;
-       color: black;
-       font-weight: bold;
-       transition: color 0.3s ease-in-out;
-       color: rgb(255, 138, 158);
-   }
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    color: rgb(255, 138, 158);
+}
 
-   a:hover {
-       color: white;
-   }
+a:hover {
+    color: white;
+}
 
-   .bottom-image {
-       position: absolute;
-       bottom: 0;
-       left: 0;
-       right: 0;
-       margin: auto;
-       width: 100px;
-       height: 100px;
-       max-width: 100%;
-       max-height: 100%;
-   }
+/* Style the bottom image */
+.bottom-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    max-width: 100%;
+    max-height: 100%;
+}
 
-   h1 {
-       font-size: 5rem;
-       text-align: center;
-       color: rgb(34, 131, 183);
-       text-shadow: 2px 2px #333;
-       margin-top: 2rem;
-       letter-spacing: 2px;
-       text-transform: uppercase;
-       background-color: white;
-       display: block;
-       width: 100%;
-       /* Set width to 100% */
-       height: 2em;
-       background-color: white;
-       margin-bottom: 5px;
-       transition: all 0.3s ease-in-out;
-       display: flex;
-       /* Use flexbox */
-       justify-content: center;
-       /* Center horizontally */
-       align-items: center;
-       /* Center vertically */
-   }
+/* Define styles for the heading */
+h1 {
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(34, 131, 183);
+    text-shadow: 2px 2px #333;
+    margin-top: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: white;
+    display: block;
+    width: 100%; /* Set width to 100% */
+    height: 2em;
+    background-color: white;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
 
-   p {
-       font-size: 1.2rem;
-       line-height: 1.5;
-       margin-bottom: 1.5rem;
-       text-align: justify;
-       text-justify: inter-word;
-       color: #333;
-       font-family: 'Open Sans', sans-serif;
-       background-color: white;
-       border-radius: 10px;
-       padding: 20px;
-   }
+/* Define styles for paragraphs */
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
 
-   /* --- Table ---- */
+/* Define styles for tables */
+/* --- Table ---- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2rem;
+}
 
-   table {
-       border-collapse: collapse;
-       width: 100%;
-       margin-bottom: 2rem;
-   }
+th,
+td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
 
-   th,
-   td {
-       text-align: left;
-       padding: 0.5rem;
-       border-bottom: 1px solid #ddd;
-   }
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
 
-   th {
-       background-color: #f2f2f2;
-       font-weight: bold;
-   }
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-   tr:nth-child(even) {
-       background-color: #f2f2f2;
-   }
+td {
+    color: #333;
+}
 
-   td {
-       color: #333;
-   }
+td:first-child {
+    font-weight: bold;
+}
 
-   td:first-child {
-       font-weight: bold;
-   }
+td:last-child {
+    font-style: italic;
+}
 
-   td:last-child {
-       font-style: italic;
-   }
+/* Styles for forms */
+/* ------------------------------------ */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
 
-   /* ------------------------------------ */
+label {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
 
-   form {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       margin-top: 50px;
-   }
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
 
-   label {
-       font-size: 1.2rem;
-       margin-top: 20px;
-   }
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
 
-   input[type="text"],
-   input[type="tel"],
-   input[type="email"],
-   textarea {
-       width: 100%;
-       padding: 12px 20px;
-       margin: 8px 0;
-       box-sizing: border-box;
-       border: 2px solid #ccc;
-       border-radius: 4px;
-       resize: none;
-   }
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
 
-   input[type="submit"] {
-       background-color: #4CAF50;
-       color: white;
-       padding: 14px 20px;
-       margin: 8px 0;
-       border: none;
-       border-radius: 4px;
-       cursor: pointer;
-       font-size: 1.2rem;
-   }
+input[type="submit"]:active {
+    background-color: #3e8e41;
+}
 
-   input[type="submit"]:hover {
-       background-color: #45a049;
-   }
+input[type="submit"]:focus {
+    outline: none;
+}
 
-   input[type="submit"]:active {
-       background-color: #3e8e41;
-   }
+textarea {
+    height: 200px;
+}
 
-   input[type="submit"]:focus {
-       outline: none;
-   }
+/* Responsive styles for forms */
+@media screen and (min-width: 768px) {
+    form {
+        width: 50%;
+        margin: 50px auto;
+    }
+}
 
-   textarea {
-       height: 200px;
-   }
+/* Additional styles for submit button with animation */
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
-   @media screen and (min-width: 768px) {
-       form {
-           width: 50%;
-           margin: 50px auto;
-       }
-   }
+input[type="submit"]:hover {
+    background-color: #e74c3c;
+    animation: shakeAnimation 0.5s infinite alternate;
+}
 
-    /* ------ */
-
-    input[type="submit"] {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-      }
-      
-      input[type="submit"]:hover {
-        background-color: #e74c3c;
-        animation: coolAnimation 0.5s infinite alternate;
-      }
-      
-      @keyframes coolAnimation {
-        0% {
-            transform: translateX(0) rotate(0);
-          }
-          25% {
-            transform: translateX(-2px) rotate(-2deg);
-          }
-          50% {
-            transform: translateX(0) rotate(0);
-          }
-          75% {
-            transform: translateX(2px) rotate(2deg);
-          }
-          100% {
-            transform: translateX(0) rotate(0);
-          }
-      }
-      
+@keyframes shakeAnimation {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+    25% {
+        transform: translateX(-2px) rotate(-2deg);
+    }
+    50% {
+        transform: translateX(0) rotate(0);
+    }
+    75% {
+        transform: translateX(2px) rotate(2deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0);
+    }
+}
