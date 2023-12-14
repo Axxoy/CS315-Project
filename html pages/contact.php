@@ -12,42 +12,12 @@
 
 <body>
 
-    <section>
-        <nav>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-toggle-label">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
+    <!-- include the menu sidebar -->
+    <?php include 'sidebar.php'; ?>
 
-            <!-- Add the menu bar -->
-            <div class="menu">
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <br>
-                    <li><a href="about.html">About</a></li>
-                    <br>
-                    <li><a href="affirmations.html">Affirmations</a></li>
-                    <br>
-                    <li><a href="resources.html">Resources</a></li>
-                    <br>
-                    <li><a href="source_code.html">Source Code</a></li>
-                    <br>
-                    <li><a href="journaling.html">Journaling</a></li>
-                    <br>
-                    <li><a href="meditation.html">Meditation</a></li>
-                    <br>
-                    <li><a href="inspiration.html">Inspiration</a></li>
-                    <br>
-                    <li><a href="seek_help.html">Seek Help</a></li>
-                    <br>
-                    <li><a href="contact.html">Contact</a></li>
-                    <br>
-                </menu>
-            </div>
-        </nav>
-    </section>
+    <a href="cart.php" id="cart-icon" title="View Cart">
+        <img src="../assets/images/shopping-cart.png" alt="Cart">
+    </a>
 
     <h1>Contact Us!</h1>
 
@@ -136,7 +106,7 @@
             localStorage.setItem("data", jsonData);
 
             // Redirect to the submission page
-            window.location.href = 'submission.html';
+            window.location.href = 'submission.php';
 
             // Send the form data to the server using fetch
             fetch("/your-server-endpoint", {

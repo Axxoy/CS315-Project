@@ -1,3 +1,27 @@
+<?php
+
+// Set the default timezone to America/Chicago
+date_default_timezone_set('America/Chicago');
+
+session_start();
+ob_start();
+
+// Initialize operator
+if (!(isset($_POST['operation'])))
+    $_POST['operation'] = "";
+
+
+// Check if the user is logged in. If not, redirect them to the login page
+if (!isset($_SESSION['hdksks8272nsksl3839sjsj2938djs'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$db = new mysqli("127.0.0.1", "root", "1453", "cs315_project") or die("could not connect to mysql"); // Open up the connection
+if ($db->connect_error)
+    die("Connection failed: " . $db->connect_error);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,46 +35,18 @@
 </head>
 
 <body>
-    <!-- Add the checkbox and label for the menu toggle -->
-    <section>
-        <nav>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-toggle-label">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
 
-            <!-- Add the menu bar -->
-            <div class="menu">
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <br>
-                    <li><a href="about.html">About</a></li>
-                    <br>
-                    <li><a href="affirmations.html">Affirmations</a></li>
-                    <br>
-                    <li><a href="resources.html">Resources</a></li>
-                    <br>
-                    <li><a href="source_code.html">Source Code</a></li>
-                    <br>
-                    <li><a href="journaling.html">Journaling</a></li>
-                    <br>
-                    <li><a href="meditation.html">Meditation</a></li>
-                    <br>
-                    <li><a href="inspiration.html">Inspiration</a></li>
-                    <br>
-                    <li><a href="seek_help.html">Seek Help</a></li>
-                    <br>
-                    <li><a href="contact.html">Contact</a></li>
-                    <br>
-                </menu>
-            </div>
-        </nav>
-    </section>
+    <!-- include the menu sidebar -->
+    <?php include 'sidebar.php'; ?>
 
+    <a href="cart.php" id="cart-icon" title="View Cart">
+        <img src="../assets/images/shopping-cart.png" alt="Cart">
+    </a>
+    <!-- Header -->
     <header>
+
         <h1>InnerSoul Journeys</h1>
+
     </header>
 
     <p>Welcome to InnerSoul Journeys, your destination for self-help and meditation resources. We believe that everyone
