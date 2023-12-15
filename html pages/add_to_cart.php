@@ -21,20 +21,28 @@ if ($db->connect_error) {
 // Function to add a product to the cart
 function addToCart($productId, $quantity)
 {
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
+    // Check if the cart cookie exists
+    if (isset($_COOKIE['cart'])) {
+        // If yes, retrieve the cart data
+        $cart = json_decode($_COOKIE['cart'], true);
+    } else {
+        // If not, create a new cart array
+        $cart = array();
     }
 
     // Check if the product already exists in the cart
-    if (isset($_SESSION['cart'][$productId])) {
+    if (isset($cart[$productId])) {
         // Update the quantity
-        $_SESSION['cart'][$productId] += $quantity;
+        $cart[$productId] += $quantity;
     } else {
         // Add the product with its quantity
-        $_SESSION['cart'][$productId] = $quantity;
+        $cart[$productId] = $quantity;
     }
-}
 
+    // Save the updated cart back into the cookie
+    // Set a reasonable expiration time for the cookie, e.g., 30 days
+    setcookie('cart', json_encode($cart), time() + (86400 * 30), "/"); // 86400 = 1 day
+}
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate and sanitize inputs

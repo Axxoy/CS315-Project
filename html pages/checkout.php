@@ -17,7 +17,7 @@ $userId = $_SESSION['hdksks8272nsksl3839sjsj2938djs']; // Assuming this session 
 $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 $totalCost = 0;
 $premiumDiscount = 0;
-$missouriTaxRate = 0.04225; // Missouri state tax rate as of my knowledge cutoff in 2021
+$missouriTaxRate = 0.04225;
 
 // Check if the user is a premium member
 $stmt = $db->prepare("SELECT premium_member FROM users WHERE id = ?");
@@ -50,8 +50,6 @@ if ($isPremiumMember) {
 // Calculate total cost after tax and discount
 $totalCostAfterTax = $totalCost * (1 + $missouriTaxRate) - $premiumDiscount;
 
-// ... (rest of your PHP code)
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,13 +60,7 @@ $totalCostAfterTax = $totalCost * (1 + $missouriTaxRate) - $premiumDiscount;
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../styles-mobile.css" media="screen and (max-width: 767px)">
     <link rel="stylesheet" type="text/css" href="../styles-desktop.css" media="screen and (min-width: 768px)">
-    <title>My Cart</title>
-</head>
-
-<head>
-    <meta charset="UTF-8">
     <title>Checkout</title>
-    <!-- Add any additional head elements here -->
 </head>
 
 <body>
@@ -89,20 +81,18 @@ $totalCostAfterTax = $totalCost * (1 + $missouriTaxRate) - $premiumDiscount;
         </strong></p>
 
     <!-- Credit Card and Shipping Address Form -->
-    <form action="process_checkout.php" method="post">
-        <!-- Add fields for credit card information -->
-        <!-- IMPORTANT: This should be handled with a secure method in production -->
+    <form action="process_checkout.php" method="post" onsubmit="return validateForm()">
         <div>
             <label for="card_number">Card Number:</label>
-            <input type="text" id="card_number" name="card_number" required>
+            <input type="text" id="card_number" name="card_number" pattern="\d*" maxlength="16" required>
         </div>
         <div>
             <label for="card_expiry">Expiry Date:</label>
-            <input type="text" id="card_expiry" name="card_expiry" required>
+            <input type="month" id="card_expiry" name="card_expiry" required>
         </div>
         <div>
             <label for="card_cvv">CVV:</label>
-            <input type="text" id="card_cvv" name="card_cvv" required>
+            <input type="text" id="card_cvv" name="card_cvv" pattern="\d*" maxlength="3" required>
         </div>
 
         <!-- Shipping Address -->
@@ -122,18 +112,73 @@ $totalCostAfterTax = $totalCost * (1 + $missouriTaxRate) - $premiumDiscount;
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $product = $result->fetch_assoc();
-                    echo "<li>" . htmlspecialchars($product['name']) . " x " . $quantity . "</li>";
+                    echo "<li>" . htmlspecialchars($product['name']) . " x " . htmlspecialchars($quantity) . "</li>";
                 }
                 $stmt->close();
                 ?>
             <?php endforeach; ?>
         </ul>
 
+        <!-- Hidden field to pass the total cost after tax -->
+        <input type="hidden" name="total_price"
+            value="<?= htmlspecialchars(number_format($totalCostAfterTax, 2, '.', '')) ?>">
+
         <!-- Submit Button -->
         <div>
             <input type="submit" value="Place Order">
         </div>
     </form>
+
+    <script>
+        function validateForm() {
+            var cardNumber = document.getElementById('card_number').value;
+            var cardExpiry = document.getElementById('card_expiry').value;
+            var cardCVV = document.getElementById('card_cvv').value;
+            var shippingAddress = document.getElementById('shipping_address').value;
+
+            // Simple validation checks
+            if (!validateCreditCard(cardNumber)) {
+                alert('Invalid credit card number.');
+                return false;
+            }
+
+            if (!validateExpiryDate(cardExpiry)) {
+                alert('Invalid expiry date.');
+                return false;
+            }
+
+            if (cardCVV.length !== 3) {
+                alert('Invalid CVV.');
+                return false;
+            }
+
+            if (shippingAddress.trim().length === 0) {
+                alert('Shipping address cannot be empty.');
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateCreditCard(cardNumber) {
+            // Check if the card number consists of exactly 16 digits
+            return /^\d{16}$/.test(cardNumber);
+
+
+        }
+
+        function validateExpiryDate(expiryDate) {
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentMonth = currentDate.getMonth() + 1; // getMonth is zero-indexed
+
+            var parts = expiryDate.split('-');
+            var year = parseInt(parts[0], 10);
+            var month = parseInt(parts[1], 10);
+
+            return year > currentYear || (year === currentYear && month >= currentMonth);
+        }
+    </script>
 </body>
 
 </html>

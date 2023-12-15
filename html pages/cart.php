@@ -13,6 +13,7 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
+// Fetch cart from cookie
 $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 
 // Update or remove items in the cart
@@ -20,32 +21,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $productId = isset($_POST['product_id']) ? intval($_POST['product_id']) : null;
     $updateType = isset($_POST['update_type']) ? $_POST['update_type'] : '';
 
-    if ($productId && isset($_SESSION['cart'][$productId])) {
+    if ($productId) {
         if ($updateType == 'remove') {
             // Remove the item from the cart
-            unset($_SESSION['cart'][$productId]);
-            setcookie('cart', json_encode($cart), time() + 86400, "/"); // Update the cookie after removing the item
-
+            unset($cart[$productId]);
         } elseif ($updateType == 'update') {
             // Update the quantity
             $newQuantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 0;
             if ($newQuantity > 0) {
-                $_SESSION['cart'][$productId] = $newQuantity;
-                setcookie('cart', json_encode($cart), time() + 86400, "/"); // Set the updated cart as a cookie
-
+                $cart[$productId] = $newQuantity;
             } elseif ($newQuantity == 0) {
-                unset($_SESSION['cart'][$productId]);
+                unset($cart[$productId]);
             }
         }
+        // Update the cookie with new cart data
+        setcookie('cart', json_encode($cart), time() + 86400 * 30, "/"); // 30-day cookie
     }
 
     // Redirect to the same page to display updated cart
     header("Location: cart.php");
     exit();
 }
-
-// Fetch cart from session
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
 // Initialize total cost
 $totalCost = 0;
@@ -62,7 +58,7 @@ foreach ($cart as $productId => $quantity) {
             $row['quantity'] = $quantity; // Add the quantity to the product details
             $cartItems[] = $row;
 
-            // Add the line here to update the total cost
+            // Calculate the total cost
             $totalCost += $row['price'] * $quantity;
         }
     }
