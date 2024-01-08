@@ -10,6 +10,9 @@ Designed and implemented by:
 
 Technologies used: PHP, HTML, CSS, MySQL, JavaScript, Apache WebServer 
 
+### 🔗 *Video demo is available on YouTube*: [https://www.youtube.com/watch?v=q5f-aAP2C4c](https://www.youtube.com/watch?v=q5f-aAP2C4c)
+<br>
+
 ![](assets/images/home_page.png)
 
 ![](assets/images/affirmations.png)
